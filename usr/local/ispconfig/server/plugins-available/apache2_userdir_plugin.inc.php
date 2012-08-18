@@ -61,6 +61,12 @@ class apache2_userdir_plugin {
 
 
 		/*
+		 * override the disabled field
+		 */
+		if ($data['new']['userdir'] == 0) $data['new']['active'] = 'n';
+
+
+		/*
 		 * require the vhost class and run the function
 		 */
 		require_once 'classes/vhost.php';

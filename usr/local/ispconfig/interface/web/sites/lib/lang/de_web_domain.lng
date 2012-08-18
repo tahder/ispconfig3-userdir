@@ -38,6 +38,7 @@ $wb['domain_error_regex'] = 'Domainname ungültig.';
 $wb['hd_quota_error_empty'] = 'Harddisk Quota ist leer.';
 $wb['traffic_quota_error_empty'] = 'Traffic Quota ist leer.';
 $wb['errordocs_txt'] = 'Eigene Fehlerseiten';
+$wb['userdir_txt'] = 'Temporäre URL';
 $wb['error_ssl_state_empty'] = 'SSL Status ist leer.';
 $wb['error_ssl_locality_empty'] = 'SSL Lokalität ist leer.';
 $wb['error_ssl_organisation_empty'] = 'SSL Organisation ist leer.';

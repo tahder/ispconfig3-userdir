@@ -29,6 +29,7 @@ $wb["traffic_quota_txt"] = 'Traffic Quota';
 $wb["cgi_txt"] = 'CGI';
 $wb["ssi_txt"] = 'SSI';
 $wb["errordocs_txt"] = 'Own Error-Documents';
+$wb['userdir_txt'] = 'Temporary URL';
 $wb["subdomain_txt"] = 'Auto-Subdomain';
 $wb["ssl_txt"] = 'SSL';
 $wb["suexec_txt"] = 'SuEXEC';
