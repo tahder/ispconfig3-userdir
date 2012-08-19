@@ -1,0 +1,30 @@
+<IfModule mod_userdir.c>
+	UserDir /var/www/*/web
+	UserDir disabled
+
+	Include /etc/apache2/userdirs-enabled/*
+
+	<Directory /var/www/*/web>
+
+		AllowOverride FileInfo AuthConfig Limit Indexes
+		Options MultiViews SymLinksIfOwnerMatch IncludesNoExec
+
+		<Limit GET POST OPTIONS>
+			Order allow,deny
+			Allow from all
+		</Limit>
+
+		<LimitExcept GET POST OPTIONS>
+			Order deny,allow
+			Deny from all
+		</LimitExcept>
+
+		# Disallow PHP file access
+		<Files ~ '.php[s3-6]{0,1}$'>
+			Order allow,deny
+			Deny from all
+			Allow from none
+		</Files>
+
+	</Directory>
+</IfModule>

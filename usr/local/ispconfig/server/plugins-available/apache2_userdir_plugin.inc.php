@@ -179,8 +179,6 @@ class apache2_userdir_plugin {
 		 * Write some values from the array to single variables
 		 */
 		$vhost_data = $data['new'];
-		$client_id = $data['new']['system_group'];
-		$web_id = $data['new']['system_user'];
 
 
 		/*
