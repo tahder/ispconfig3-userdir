@@ -218,71 +218,9 @@ class apache2_userdir_plugin {
 
 
 		/*
-		 * restart the apache2 webserver to apply changes
+		 * reload the apache2 webserver to apply changes
 		 */
-		if($web_config['check_apache_config'] == 'y') {
-
-			/*
-			 *  Test if apache starts with the new configuration file
-			 */
-			$apache_online_status_before_restart = $this->_checkTcp('localhost', 80);
-			$app->log('Apache status is: '. $apache_online_status_before_restart, LOGLEVEL_DEBUG);
-
-			$app->services->restartService('httpd', 'restart');
-
-			/*
-			 * wait a few seconds, before we test the apache status again
-			 */
-			sleep(2);
-
-			/*
-			 * Check if apache restarted successfully if it was online before
-			 */
-			$apache_online_status_after_restart = $this->_checkTcp('localhost', 80);
-			$app->log('Apache online status after restart is: '.$apache_online_status_after_restart, LOGLEVEL_DEBUG);
-
-			if($apache_online_status_before_restart && !$apache_online_status_after_restart) {
-
-				$app->log('Apache did not restart after the configuration change for website '. $data['new']['domain'] .' Reverting the configuration. Saved non-working config as '. $vhost_file .'.err',LOGLEVEL_WARN);
-				if (isset($vhost_backup)) copy($vhost_backup['file_new'], $vhost_backup['file_new'] .'.err');
-
-				if(is_file($vhost_backup['file_new'] .'~')) {
-
-					/*
-					 * Copy back the last backup file
-					 */
-					copy($vhost_backup['file_new'] .'~', $vhost_backup['file_new']);
-
-				} else {
-
-					/*
-					 * There is no backup file, so we create a empty vhost file with a warning message inside
-					 */
-					file_put_contents($vhost_backup['file_new'], "# Apache did not start after modifying this vhost file.\n# Please check file $vhost_file.err for syntax errors.");
-
-				}
-
-				$app->services->restartService('httpd', 'restart');
-			}
-
-		} else {
-
-			/*
-			 * We do not check the apache config after changes (is faster)
-			 */
-			if($apache_chrooted) {
-
-				$app->services->restartServiceDelayed('httpd', 'restart');
-
-			} else {
-
-				/*
-				 * request a httpd reload when all records have been processed
-				 */
-				$app->services->restartServiceDelayed('httpd', 'reload');
-
-			}
-		}
+		$app->services->restartServiceDelayed('httpd', 'reload');
 
 
 		/*
