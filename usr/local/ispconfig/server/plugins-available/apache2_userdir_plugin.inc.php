@@ -63,7 +63,7 @@ class apache2_userdir_plugin {
 		/*
 		 * override the disabled field
 		 */
-		if ($data['new']['userdir'] == 0) $data['new']['active'] = 'n';
+		if ($data['new']['userdir_plugin'] == 0) $data['new']['active'] = 'n';
 
 
 		/*
@@ -89,7 +89,7 @@ class apache2_userdir_plugin {
 		/*
 		 * The check ifself
 		 */
-		if ($conf['services']['apache2_userdir'] == true) {
+		if ($conf['services']['apache2_userdir_plugin'] == true) {
 			return true;
 		} else {
 			return false;
@@ -172,7 +172,7 @@ class apache2_userdir_plugin {
 		 * the file is located within /usr/local/ispconfig/server/conf/
 		 */
 		$tpl = new tpl();
-		$tpl->newTemplate('apache2_userdir.conf.master');
+		$tpl->newTemplate('apache2_userdir_plugin.conf.master');
 
 
 		/*

@@ -191,7 +191,7 @@ $form["tabs"]['domain'] = array (
 			'default'	=> '1',
 			'value'		=> array(0 => '0',1 => '1')
 		),
-		'userdir' => array (
+		'userdir_plugin' => array (
 			'datatype'	=> 'INTEGER',
 			'formtype'	=> 'CHECKBOX',
 			'default'	=> '0',
