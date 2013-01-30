@@ -20,7 +20,7 @@ class apache2_userdir_plugin {
 
 	/*
 	 * the vhost handles the whole creating, updating and deleting
-	 * of the nginx vhost files
+	 * of the userdir vhost files
 	 */
 	function vhost($action, $data, $tpl = '') {
 		global $app;
@@ -45,7 +45,7 @@ class apache2_userdir_plugin {
 
 
 		/*
-		 * check if the vhost file exists in "/etc/nginx/sites-available"
+		 * check if the vhost file exists in "/etc/apache2/userdirs-available"
 		 * (or the path you defined) and set to '1' if it does
 		 */
 		if (is_file($data['vhost']['file_old'])) $data['vhost']['file_old_check'] = 1;
@@ -53,7 +53,7 @@ class apache2_userdir_plugin {
 
 
 		/*
-		 * check if the vhost file is linked in "/etc/nginx/sites-enabled"
+		 * check if the vhost file is linked in "/etc/apache2/userdirs-enabled"
 		 * (or the path you defined) and set to '1' if it does
 		 */
 		if (is_link($data['vhost']['link_old'])) $data['vhost']['link_old_check'] = 1;
